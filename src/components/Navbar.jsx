@@ -1,8 +1,10 @@
 import { useGSAP } from "@gsap/react";
-import { navLinks } from "../../Constants/index.js";
 import gsap from "gsap";
+import { navLinks } from "../../Constants/index.js";
 
 const Navbar = () => {
+
+
   useGSAP(() => {
     const navTween = gsap.timeline({
       ScrollTrigger: {
@@ -16,7 +18,7 @@ const Navbar = () => {
       { backgroundColor: "transparent" },
       {
         backgroundColor: "#00000050",
-        backgroundFilter: "blur(30px)",
+        backdropFilter: "blur(10px)",
         duration: 1,
         ease: "power1.inOut",
       },
@@ -25,7 +27,7 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div>
+      <div className="px-8">
         <a href="#home" className="flex items-center gap-2">
           <img src="/images/logo.png" alt="" />
           Velvet Pour
