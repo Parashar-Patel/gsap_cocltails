@@ -1,0 +1,80 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { SplitText } from "gsap/all";
+
+const Hero = () => {
+  useGSAP(() => {
+    const heroSplit = new SplitText(".title", { type: "chars, words" });
+    const paragraphSplit = new SplitText(".subtitle", { type: "lines" });
+
+    heroSplit.chars.forEach((char) => {
+      char.classList.add("text-gradient");
+    });
+
+    const tl1 = gsap.timeline();
+
+    tl1.from(heroSplit.chars, {
+      opacity: 0,
+      yPercent: 100,
+      duration: 1.8,
+      ease: "expo.out",
+      stagger: 0.05,
+    });
+
+    tl1.from(
+      paragraphSplit.lines,
+      {
+        yPercent: 100,
+        opacity: 0,
+        duration: 1.8,
+        ease: "expo.out",
+        stagger: 0.06,
+      },
+      "=-1.3",
+    );
+
+    const tl2 = gsap.timeline({
+      scrollTrigger: {
+        target: "#hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+    tl2.to(".right-leaf", { y: 200},0);
+    tl2.to(".left-leaf", { y: -200},0);
+  });
+
+  return (
+    <>
+      <section id="hero" className="noisy">
+        <h1 className="title">MOJITO</h1>
+        <img src="/images/hero-left-leaf.png" alt="" className="left-leaf" />
+        <img src="/images/hero-right-leaf.png" alt="" className="right-leaf" />
+
+        <div className="body">
+          <div className="content">
+            <div className="space-y-5 hidden md:block">
+              <p>Cool, Crisp, Classic</p>
+              <p className="subtitle">
+                {" "}
+                Sip The Sprit
+                <br /> Summer
+              </p>
+            </div>
+            <div className="view-cocktails">
+              <div className="subtitle">
+                Every cocktail on our menu is a blend of premium ingredients,
+                creative flair, and timeless recipes — designed to delight your
+                senses.{" "}
+              </div>
+              <a href="#cocktails">View Cocktails</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default Hero;
