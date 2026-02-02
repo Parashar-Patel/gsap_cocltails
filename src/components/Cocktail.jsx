@@ -6,21 +6,29 @@ const Cocktail = () => {
   useGSAP(() => {
     const parallexTimeline = gsap.timeline({
       scrollTrigger: {
-        target: "#cocktails",
-        start: "20% top",
-        end: "bottom 80%",
+        trigger: "#cocktails",
+        start: "top 70%",
+        end: "bottom 50%",
         scrub: true,
       },
     });
 
-    parallexTimeline.from("#c-left-leaf", {
-      x: -100,
-      y: 100,
-    },"0");
-    parallexTimeline.from("#c-right-leaf", {
-      x: 100,
-      y: 100,
-    },"0");
+    parallexTimeline.from(
+      "#c-left-leaf",
+      {
+        x: -100,
+        y: 100,
+      },
+      "0",
+    );
+    parallexTimeline.from(
+      "#c-right-leaf",
+      {
+        x: 100,
+        y: 100,
+      },
+      "0",
+    );
   });
 
   return (
